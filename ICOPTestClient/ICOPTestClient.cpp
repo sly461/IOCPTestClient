@@ -6,6 +6,9 @@
 
 int main()
 {
+	CClient client;
+	client.Start();
+	while (1);
     return 0;
 }
 
