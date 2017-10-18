@@ -117,7 +117,7 @@ bool CClient::EstablishConnect()
 
 
 		m_phWorkerThread[i] = CreateThread(NULL,0,WorkThread,
-			(LPVOID)&m_pWorkerThreadParam[i],0,&nThreadNo);
+			(LPVOID)(&m_pWorkerThreadParam[i]),0,&nThreadNo);
 
 	}
 	return true;
@@ -195,7 +195,7 @@ DWORD WINAPI CClient::WorkThread(LPVOID lpParam)
 				return 1;
 			}
 			index++;
-			Sleep(100000);
+			Sleep(3000);
 
 			memset(szSent, 0, sizeof(szSent));
 			sprintf(szSent, ("第%d条信息：%s\n"), index, param->m_buffer);
@@ -206,7 +206,7 @@ DWORD WINAPI CClient::WorkThread(LPVOID lpParam)
 				return 1;
 			}
 			index++;
-			Sleep(100000);
+			Sleep(3000);
 
 
 			memset(szSent, 0, sizeof(szSent));
@@ -221,6 +221,7 @@ DWORD WINAPI CClient::WorkThread(LPVOID lpParam)
 	
 	/*}*/
 
+	RELEASE(lpParam);
 	return 0;
 }
 

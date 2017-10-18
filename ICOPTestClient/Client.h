@@ -6,12 +6,13 @@
 #include <iostream>
 #include <string>
 #include <winsock2.h>
+#include <string.h>
 using namespace std;
 #pragma comment(lib,"ws2_32.lib")
 
 
 
-#define MAX_BUFLEN 1024                       //缓冲区长度
+#define MAX_BUFLEN 8096                       //缓冲区长度
 #define DEFAULT_PORT 9990                     //默认端口
 #define DEFAULT_IP "127.0.0.1"            //默认IP地址
 #define DEFAULT_CLIENTS 100                   //默认线程数量
