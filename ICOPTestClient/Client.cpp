@@ -221,7 +221,7 @@ DWORD WINAPI CClient::WorkThread(LPVOID lpParam)
 	
 	/*}*/
 
-	RELEASE(lpParam);
+	
 	return 0;
 }
 
