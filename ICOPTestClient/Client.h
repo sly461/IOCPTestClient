@@ -13,7 +13,7 @@ using namespace std;
 
 #define MAX_BUFLEN 1024                       //缓冲区长度
 #define DEFAULT_PORT 9990                     //默认端口
-#define DEFAULT_IP "192.168.0.102"            //默认IP地址
+#define DEFAULT_IP "127.0.0.1"            //默认IP地址
 #define DEFAULT_CLIENTS 100                   //默认线程数量
 #define DEFAULT_MESSAGE "hello!"              //默认信息
 
@@ -49,6 +49,7 @@ public:
 	void SetIP(const string& ip);             //设置ip地址和端口
 	void SetnPort(const int &port);
 	void SetClients(const int &num);          //设置客户端数量
+	void SetSendFlag();                       //设置发送消息标志
 
 	bool Start();                             //设置客户端开始与停止      
 	void Stop(); 
@@ -56,6 +57,7 @@ public:
 private:
 	int m_numClients;                         //客户端数量
 	int m_nPort;                              //端口
+	bool m_flagSend;                          //发送消息的标志
 	string m_serverAddr;                      //服务器地址
 	string m_message;                         //发送信息
 	

@@ -9,7 +9,8 @@ CClient::CClient()
 	 m_hConnectionThread(NULL),
 	 m_phWorkerThread(nullptr),
 	 m_pWorkerThreadParam(nullptr),
-	 m_message(DEFAULT_MESSAGE)
+	 m_message(DEFAULT_MESSAGE),
+	 m_flagSend(false)
 {
 	LoadSocketLib();
 }
@@ -33,6 +34,11 @@ void CClient::SetnPort(const int & port)
 void CClient::SetClients(const int & num)
 {
 	m_numClients = num;
+}
+
+void CClient::SetSendFlag()
+{
+	m_flagSend = !m_flagSend;
 }
 
 bool CClient::Start()
@@ -175,17 +181,45 @@ DWORD WINAPI CClient::WorkThread(LPVOID lpParam)
 	int nBytesSent = 0;
 	int nBytesRecv = 0;
 
-	/*while (WAIT_OBJECT_0 != WaitForSingleObject(pClient->m_hQuitEvent, 0)&&index<num)
+	int index = 1;
+
+	/*while (WAIT_OBJECT_0 != WaitForSingleObject(pClient->m_hQuitEvent, 0))
 	{*/
+		
+			memset(szSent, 0, sizeof(szSent));
+			sprintf(szSent, ("第%d条信息：%s\n"), index, param->m_buffer);
+			nBytesSent = send(param->m_socket, szSent, strlen(szSent), 0);
+			if (SOCKET_ERROR == nBytesSent)
+			{
+				printf("错误：发送信息失败，错误代码：%ld\n", WSAGetLastError());
+				return 1;
+			}
+			index++;
+			Sleep(100000);
+
+			memset(szSent, 0, sizeof(szSent));
+			sprintf(szSent, ("第%d条信息：%s\n"), index, param->m_buffer);
+			nBytesSent = send(param->m_socket, szSent, strlen(szSent), 0);
+			if (SOCKET_ERROR == nBytesSent)
+			{
+				printf("错误：发送信息失败，错误代码：%ld\n", WSAGetLastError());
+				return 1;
+			}
+			index++;
+			Sleep(100000);
+
+
+			memset(szSent, 0, sizeof(szSent));
+			sprintf(szSent, ("第%d条信息：%s\n"), index, param->m_buffer);
+			nBytesSent = send(param->m_socket, szSent, strlen(szSent), 0);
+			if (SOCKET_ERROR == nBytesSent)
+			{
+				printf("错误：发送信息失败，错误代码：%ld\n", WSAGetLastError());
+				return 1;
+			}
+			index++;
 	
-		memset(szSent, 0, sizeof(szSent));
-		sprintf(szSent, ("第条信息：%s\n"), param->m_buffer);
-		nBytesSent = send(param->m_socket, szSent, strlen(szSent), 0);
-		if (SOCKET_ERROR == nBytesSent)
-		{
-			printf("错误：发送信息失败，错误代码：%ld\n", WSAGetLastError());
-			return 1;
-		}
+	/*}*/
 
 	return 0;
 }
