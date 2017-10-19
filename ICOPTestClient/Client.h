@@ -65,7 +65,7 @@ private:
 	HANDLE m_hConnectionThread;               //连接的线程
 	HANDLE *m_phWorkerThread;                 //工作者线程句柄
 	PWORKER_THREAD_PARAM m_pWorkerThreadParam;//工作者线程参数
-	HANDLE m_hQuitEvent;                      //退出事件
+	HANDLE m_hQuitEvent;                      //退出事件句柄
 
 
 	bool LoadSocketLib();                     //加载socket库

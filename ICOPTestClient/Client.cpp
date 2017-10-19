@@ -239,6 +239,7 @@ DWORD WINAPI CClient::WorkThread(LPVOID lpParam)
 		return 1;
 	}
 	index++;*/
+
 	return 0;
 }
 
