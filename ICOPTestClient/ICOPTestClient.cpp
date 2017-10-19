@@ -7,7 +7,7 @@
 int main()
 {
 	CClient client;
-	string serverAddr, str;
+	string serverAddr;
 	int port,numClients;
 
 	cout << "·şÎñÆ÷µØÖ·£º";

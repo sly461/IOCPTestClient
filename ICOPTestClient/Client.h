@@ -31,6 +31,7 @@ typedef struct _WORKER_THREAD_PARAM
 	SOCKET m_socket;                          //socket
 	int m_nThreadNo;                          //线程编号
 	char m_buffer[MAX_BUFLEN];                //缓冲区
+
 }WORKER_THREAD_PARAM,*PWORKER_THREAD_PARAM;
 
 //负责socket连接的线程的参数
@@ -50,7 +51,7 @@ public:
 	void SetIP(const string& ip);             //设置ip地址和端口
 	void SetnPort(const int &port);
 	void SetClients(const int &num);          //设置客户端数量
-	void SetSendFlag();                       //设置发送消息标志
+	void setMessage(const string &str);       //设置发送的消息
 
 	bool Start();                             //设置客户端开始与停止      
 	void Stop(); 
@@ -58,7 +59,6 @@ public:
 private:
 	int m_numClients;                         //客户端数量
 	int m_nPort;                              //端口
-	bool m_flagSend;                          //发送消息的标志
 	string m_serverAddr;                      //服务器地址
 	string m_message;                         //发送信息
 	
