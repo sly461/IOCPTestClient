@@ -12,7 +12,7 @@ using namespace std;
 
 
 
-#define MAX_BUFLEN 8196                       //缓冲区长度
+#define MAX_BUFLEN 8192                       //缓冲区长度
 #define DEFAULT_PORT 9990                     //默认端口
 #define DEFAULT_IP "127.0.0.1"                //默认IP地址
 #define DEFAULT_CLIENTS 100                   //默认线程数量

@@ -198,7 +198,7 @@ DWORD WINAPI CClient::WorkThread(LPVOID lpParam)
 			return 1;
 		}
 		index++;
-		Sleep(2000);
+		Sleep(1000);
 
 		memset(szRecv, 0, sizeof(szRecv));
 		nBytesRecv = recv(param->m_socket, szRecv, sizeof(szRecv), 0);
